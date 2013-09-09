@@ -3,13 +3,21 @@
 
 #include "Leap.h"
 #include "LeapMath.h"
+#include "pListener.h"
+#include "ncurses.h"
 
+using namespace Leap;
 
 class pWorld{
 	public:
 		pWorld(int argc, char **argv);
-		static void loop();
+		void loop();
 		void init();
+		
+		pListener listener;
+		Controller controller;
+		
+		
 };
 
 #endif
