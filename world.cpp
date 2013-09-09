@@ -4,7 +4,16 @@ pWorld::pWorld(int argc, char **argv){
 	
 }
 
-void pWorld::loop(){
+void pWorld::init(){
+	initscr();
+	raw();
+	printw("Hello");
+	refresh();
+	getch();
 	
+	endwin();
+}
+
+pWorld::~pWorld(){
 	
 }
