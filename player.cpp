@@ -6,7 +6,7 @@ pPlayer::pPlayer(pWorld *world, pLR lr){
 	this->world = world;
 	pos.y = world->col/2.0; //position in the middle of the page
 	
-	pos.x = (lr==pRight)? 0.0:world->row-1.0;
+	pos.x = (lr==pLeft)? 0.0:world->row-1.0;
 }
 
 void pPlayer::update(){

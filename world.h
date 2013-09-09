@@ -20,8 +20,12 @@ class pWorld{
 		float row;
 		~pWorld();
 	private:
+		
+		time_t lastClock;
+		
 		Controller controller;
 		void loop();
+		void getInputs();
 		pPlayer *player[2];
 		pBall *ball;
 };

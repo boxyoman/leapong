@@ -1,5 +1,6 @@
 #include "world.h"
 #include <math.h>
+#include <time.h>
 
 pWorld::pWorld(int argc, char **argv){
 	
@@ -32,6 +33,8 @@ void pWorld::init(){
 	player[1] = new pPlayer(this, pRight);
 	ball = new pBall(this);
 	
+	lastClock = clock();
+	
 	while(1){
 		loop();
 	}
@@ -41,7 +44,11 @@ void pWorld::init(){
 
 void pWorld::loop(){
 	int ch = getch();
-	//erase();
+	
+	eTime = (float)(clock()-lastClock)/CLOCKS_PER_SEC*100;
+	lastClock = clock();
+	
+	erase();
 	//logic goes here
 	if (ch != ERR){
 		if(ch == 113){ //if ch == "q"
@@ -50,10 +57,7 @@ void pWorld::loop(){
 		}
 	}
 	
-	
-	/*mvprintw(0,0,"(%d, %d)", (int)col, (int)row);
-	mvprintw(1,0,"player 1 position: (%d, %d)", (int)round(player[0]->pos.x), (int)round(player[0]->pos.y));
-	mvprintw(2,0,"player 2 position: (%d, %d)", (int)round(player[1]->pos.x), (int)round(player[1]->pos.y));*/
+	getInputs();
 	
 	//Draw the paddles
 	for(int i = 0; i<2; i++){
@@ -65,9 +69,30 @@ void pWorld::loop(){
 	}
 	
 	
+	for(int i=0; i<2; i++){
+		player[i]->update();
+	}
+	
+	mvprintw(col-1,0, "%f", eTime);
 	
 	//End logic here
 	refresh();
+}
+
+void pWorld::getInputs(){
+	if(controller.isConnected()){
+		Frame frame = controller.frame();
+		
+		float rightPalmY = frame.hands().rightmost().palmPosition().y;
+		float leftPalmY = frame.hands().leftmost().palmPosition().y;
+		
+		
+		
+		player[1]->pos.y = (float)col - (float)col/150.0*(rightPalmY-100);
+		
+		mvprintw(col-2,0, "%f", (float)col/150.0*(rightPalmY-100));
+		
+	}
 }
 
 pWorld::~pWorld(){
