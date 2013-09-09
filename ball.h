@@ -8,10 +8,10 @@ class pWorld;
 class pBall{
 	public:
 		pBall(pWorld *world);
-		int size;
 		pVector pos;
 		pVector vel;
 		void update();
+		void draw();
 		
 	private:
 		pWorld *world;

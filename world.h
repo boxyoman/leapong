@@ -23,9 +23,11 @@ class pWorld{
 		
 		time_t lastClock;
 		
+		void cleanup();
+		
 		Controller controller;
 		void loop();
-		void getInputs();
+		void getLeapInputs();
 		pPlayer *player[2];
 		pBall *ball;
 };

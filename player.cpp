@@ -12,4 +12,10 @@ pPlayer::pPlayer(pWorld *world, pLR lr){
 void pPlayer::update(){
 	vel += force * world->eTime + vel * world->eTime *-1.0;
 	pos += vel * world->eTime;
+	if(pos.y-width/2 < 0){
+		pos.y = width/2;
+	}
+	if(pos.y+width/2 > world->col){
+		pos.y = world->col - width/2;
+	}
 }

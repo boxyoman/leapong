@@ -3,13 +3,29 @@
 
 pBall::pBall(pWorld* world){
 	this->world = world;
-	size = 2;
 	
-	pos.x = world->col/2;
-	pos.y = world->row/2;
+	pos.x = world->row/2;
+	pos.y = world->col/2;
+	
+	vel.x = -6;
+	vel.y = .2;
 }
 
 void pBall::update(){
 	pos += vel*world->eTime;
+	if(pos.y<0){
+		pos.y=0;
+		vel.y = vel.y * -1.0;
+	}
+	if(pos.y>world->col-1){
+		pos.y=world->col-1;
+		vel.y = vel.y * -1.0;
+	}
 }
 
+void pBall::draw(){
+	mvprintw(round(pos.y), round(pos.x), " ");
+	mvprintw(round(pos.y), round(pos.x+.5), " ");
+	mvprintw(round(pos.y), round(pos.x-.5), " ");
+	
+}
