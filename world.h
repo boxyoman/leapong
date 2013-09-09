@@ -11,7 +11,7 @@ class pWorld{
 	public:
 		pWorld(int argc, char **argv);
 		void init();
-		
+		void loop();
 		Controller controller;
 		
 		
