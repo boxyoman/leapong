@@ -1,5 +1,6 @@
 #include "ball.h"
 #include "world.h"
+#include "player.h"
 
 pBall::pBall(pWorld* world){
 	this->world = world;
@@ -28,4 +29,11 @@ void pBall::draw(){
 	mvprintw(round(pos.y), round(pos.x+.5), " ");
 	mvprintw(round(pos.y), round(pos.x-.5), " ");
 	
+}
+
+void pBall::bounce(pPlayer *player){
+	float mag = vel.mag()*1.05;
+	vel.x = vel.x*-1.1;
+	vel.y += player->vel.y*0.1;
+	vel = vel.unit()*mag;
 }

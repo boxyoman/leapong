@@ -1,4 +1,5 @@
 #include "vector.h"
+#include <math.h>
 
 pVector::pVector(){
 	this->x = 0; this->y = 0;
@@ -26,4 +27,12 @@ pVector pVector::operator * (float a){
 
 float pVector::operator * (pVector v){
 	return this->x*v.x + this->y*v.y;
+}
+
+float pVector::mag(){
+	return sqrt(x*x+y*y);
+}
+
+pVector pVector::unit(){
+	return pVector(x/mag(), y/mag());
 }

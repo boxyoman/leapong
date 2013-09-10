@@ -4,6 +4,7 @@
 #include "vector.h"
 
 class pWorld;
+class pPlayer;
 
 class pBall{
 	public:
@@ -12,6 +13,7 @@ class pBall{
 		pVector vel;
 		void update();
 		void draw();
+		void bounce(pPlayer*);
 		
 	private:
 		pWorld *world;

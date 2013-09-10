@@ -81,15 +81,15 @@ void pWorld::loop(){
 		player[i]->update();
 	}
 	ball->update();
-	mvprintw(col-1, 0, "%f %d", ball->pos.x, row);
+	
 	if(ball->pos.x<1.3){
 		if(player[0]->pos.y+player[0]->width/2 > ball->pos.y && player[0]->pos.y-player[0]->width/2 < ball->pos.y){
-			ball->vel = ball->vel * -1.0;
+			ball->bounce(player[0]);
 		}
 	}
 	if(ball->pos.x>row-1.3){
 		if(player[1]->pos.y+player[1]->width/2 > ball->pos.y && player[1]->pos.y-player[1]->width/2 < ball->pos.y){
-			ball->vel = ball->vel * -1.0;
+			ball->bounce(player[1]);
 		}
 	}
 	

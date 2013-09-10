@@ -11,6 +11,8 @@ class pVector{
 		pVector operator - (pVector);
 		pVector operator * (float);
 		float operator * (pVector);
+		float mag();
+		pVector unit();
 };
 
 #endif
