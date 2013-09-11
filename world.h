@@ -25,6 +25,8 @@ class pWorld{
 		
 		void cleanup();
 		
+		void gameover();
+		
 		Controller controller;
 		void loop();
 		void getLeapInputs();

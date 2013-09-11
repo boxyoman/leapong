@@ -86,15 +86,30 @@ void pWorld::loop(){
 		if(player[0]->pos.y+player[0]->width/2 > ball->pos.y && player[0]->pos.y-player[0]->width/2 < ball->pos.y){
 			ball->bounce(player[0]);
 		}
+		if(ball->pos.x<0){
+			gameover();
+		}
 	}
 	if(ball->pos.x>row-1.3){
 		if(player[1]->pos.y+player[1]->width/2 > ball->pos.y && player[1]->pos.y-player[1]->width/2 < ball->pos.y){
 			ball->bounce(player[1]);
 		}
+		if(ball->pos.x>row){
+			gameover();
+		}
 	}
 	
 	//End logic here
 	refresh();
+}
+
+void pWorld::gameover(){
+	timeout(-1);
+	mvprintw(col/2, row/2-4, "Gameover!");
+	getch();
+	cleanup();
+	endwin();
+	exit(0);
 }
 
 void pWorld::getLeapInputs(){
